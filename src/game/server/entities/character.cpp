@@ -1024,7 +1024,11 @@ void CCharacter::Snap(int SnappingClient, int OtherMode)
 	// we need this to make ninja behave normally
 	CWeapon *pWeapon = CurrentWeapon();
 	if(pWeapon && pWeapon->GetType() == WEAPON_NINJA)
+	{
+		pWeapon->Snap(SnappingClient, OtherMode); // Snap current weapon
+
 		pDDNetCharacter->m_Flags |= CHARACTERFLAG_WEAPON_NINJA;
+	}
 
 	pDDNetCharacter->m_FreezeEnd = m_DeepFreeze ? -1 : m_FreezeTime == 0 ? 0 :
                                                                                Server()->Tick() + m_FreezeTime;
